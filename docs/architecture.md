@@ -157,4 +157,4 @@ NIST gets a CSV-based loader; AICPA TSC gets a PDF-based loader (when the user s
 
 ## What this is and isn't
 
-It's a reference implementation showing how the pieces fit together. About 1,300 lines of Python including comments. It's not a product. The README and the writeup both lean into that.
+It's a reference implementation showing how the pieces fit together. About 1,300 lines of Python including comments. It's not a product, and the README leans into that.

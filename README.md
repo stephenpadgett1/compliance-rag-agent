@@ -113,8 +113,6 @@ Editable at `evals/cases.yaml`.
 
 Total cost for the run: **$1.27** (agent + judge). 91k input tokens + 33k output tokens. Cache hit rate within a single eval run is 0% (see `docs/architecture.md` for why) — but cross-run caching within the 5-minute TTL gives ~50% hit rate on consecutive runs, real cost savings in practice.
 
-See `docs/writeup-draft.md` for what the score patterns tell us about the agent's failure modes.
-
 ## What's intentionally simple
 
 This is a reference, not a product:
@@ -124,7 +122,7 @@ This is a reference, not a product:
 - No web UI; CLI only
 - No reranking — vector + keyword hybrid is the retrieval ceiling here
 
-Further production-hardening steps are described in `docs/architecture.md` (and the writeup at `docs/writeup-draft.md`).
+Further production-hardening steps are described in `docs/architecture.md`.
 
 ## Repo layout
 
