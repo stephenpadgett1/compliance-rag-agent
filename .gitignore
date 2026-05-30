@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+.venv/
+venv/
+.python-version
+
+# Environment
+.env
+.env.local
+
+# Data — corpus is fetched via `download-corpus`; do not commit source docs or generated embeddings (large)
+data/*.pdf
+data/*.csv
+data/chroma_db/
+data/raw/
+data/processed/
+!data/.gitkeep
+
+# Eval results
+evals/results/*.json
+evals/results/*.md
+!evals/results/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store

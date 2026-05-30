@@ -1,0 +1,175 @@
+# Eval fixture set — 30 questions across four question types.
+#
+# Each case declares:
+#   - id: stable identifier for results tracking
+#   - question_type: control_mapping | criteria_interpretation | operational | gap_analysis
+#   - expected_criteria: controls the judge expects to see cited (may be empty if the
+#     question is intentionally open-ended)
+#   - notes: optional grader hints (e.g., "should be evasive — source doesn't cover this")
+#
+# These cases target NIST SP 800-53 Rev 5. If you swap to AICPA TSC, write a
+# parallel fixture set (TSC questions ≠ NIST questions).
+
+cases:
+  # ----- Control mapping (n=8) -----
+  - id: cm-01
+    question: What NIST 800-53 controls cover multi-factor authentication for privileged users?
+    question_type: control_mapping
+    expected_criteria: [IA-2, IA-2(1), IA-2(2)]
+
+  - id: cm-02
+    question: Which controls govern audit log retention?
+    question_type: control_mapping
+    expected_criteria: [AU-11]
+
+  - id: cm-03
+    question: What controls address removable media protection?
+    question_type: control_mapping
+    expected_criteria: [MP-2, MP-5, MP-7]
+
+  - id: cm-04
+    question: Map "least privilege" to specific NIST controls.
+    question_type: control_mapping
+    expected_criteria: [AC-6]
+
+  - id: cm-05
+    question: Which controls cover incident response planning?
+    question_type: control_mapping
+    expected_criteria: [IR-1, IR-8]
+
+  - id: cm-06
+    question: What controls address vulnerability scanning?
+    question_type: control_mapping
+    expected_criteria: [RA-5]
+
+  - id: cm-07
+    question: Which NIST controls cover encryption of data at rest?
+    question_type: control_mapping
+    expected_criteria: [SC-28]
+
+  - id: cm-08
+    question: What controls govern remote access?
+    question_type: control_mapping
+    expected_criteria: [AC-17]
+
+  # ----- Criteria interpretation (n=8) -----
+  - id: ci-01
+    question: What is the difference between mandatory access control (AC-3(3)) and discretionary access control (AC-3(4))?
+    question_type: criteria_interpretation
+    expected_criteria: ["AC-3(3)", "AC-3(4)"]
+
+  - id: ci-02
+    question: How does NIST 800-53 define "least privilege"?
+    question_type: criteria_interpretation
+    expected_criteria: [AC-6]
+
+  - id: ci-03
+    question: What does AC-2 require for account lifecycle management?
+    question_type: criteria_interpretation
+    expected_criteria: [AC-2]
+
+  - id: ci-04
+    question: Explain the purpose of the IA (Identification and Authentication) control family.
+    question_type: criteria_interpretation
+    expected_criteria: [IA-1]
+
+  - id: ci-05
+    question: What's the scope of AC-17 Remote Access?
+    question_type: criteria_interpretation
+    expected_criteria: [AC-17]
+
+  - id: ci-06
+    question: How does NIST 800-53 distinguish between role-based and attribute-based access control?
+    question_type: criteria_interpretation
+    expected_criteria: ["AC-3(7)", "AC-3(13)"]
+
+  - id: ci-07
+    question: What constitutes a "privileged function" under AC-6?
+    question_type: criteria_interpretation
+    expected_criteria: [AC-6]
+
+  - id: ci-08
+    question: What is the intent of the SR (Supply Chain Risk Management) control family?
+    question_type: criteria_interpretation
+    expected_criteria: [SR-1]
+
+  # ----- Operational specificity (n=7) -----
+  - id: op-01
+    question: How often must access privileges be reviewed under AC-2?
+    question_type: operational
+    expected_criteria: [AC-2]
+    notes: AC-2(j) requires review at organization-defined frequency; honest answer notes the framework defers the cadence to the org.
+
+  - id: op-02
+    question: What's the maximum number of unsuccessful login attempts before lockout under AC-7?
+    question_type: operational
+    expected_criteria: [AC-7]
+    notes: Organization-defined; the source describes the parameter, not a fixed number.
+
+  - id: op-03
+    question: How long must audit records be retained under AU-11?
+    question_type: operational
+    expected_criteria: [AU-11]
+    notes: Organization-defined retention period.
+
+  - id: op-04
+    question: How frequently must vulnerability scanning be performed per RA-5?
+    question_type: operational
+    expected_criteria: [RA-5]
+
+  - id: op-05
+    question: What session inactivity timeout does AC-12 require?
+    question_type: operational
+    expected_criteria: [AC-12]
+    notes: Organization-defined; agent should be honest about this.
+
+  - id: op-06
+    question: What types of events must be logged under AU-2?
+    question_type: operational
+    expected_criteria: [AU-2]
+
+  - id: op-07
+    question: What level of authentication strength does IA-2(1) require for privileged accounts?
+    question_type: operational
+    expected_criteria: ["IA-2(1)"]
+
+  # ----- Gap analysis (n=7) -----
+  - id: ga-01
+    question: If we have SSO with SAML, does that fully satisfy AC-7 Unsuccessful Logon Attempts?
+    question_type: gap_analysis
+    expected_criteria: [AC-7]
+    notes: SSO addresses some but not all of AC-7's requirements.
+
+  - id: ga-02
+    question: We use AWS GuardDuty — is that enough to satisfy SI-4 System Monitoring?
+    question_type: gap_analysis
+    expected_criteria: [SI-4]
+    notes: GuardDuty covers detection but SI-4 has broader scope.
+
+  - id: ga-03
+    question: Does role-based access control alone satisfy AC-3 Access Enforcement?
+    question_type: gap_analysis
+    expected_criteria: [AC-3, "AC-3(7)"]
+
+  - id: ga-04
+    question: We rotate cryptographic keys annually. Is that sufficient for SC-12?
+    question_type: gap_analysis
+    expected_criteria: [SC-12]
+
+  - id: ga-05
+    question: If we use a SaaS HRIS that handles account provisioning, do we still need to implement AC-2?
+    question_type: gap_analysis
+    expected_criteria: [AC-2]
+    notes: AC-2 applies regardless of who operates the account-management capability — common controls.
+
+  - id: ga-06
+    question: We log to CloudWatch with 90-day retention. Does that satisfy AU-11?
+    question_type: gap_analysis
+    expected_criteria: [AU-11]
+    notes: AU-11 retention is org-defined; the answer should note that 90 days may or may not be sufficient depending on the org's requirements.
+
+  - id: ga-07
+    question: If our cloud provider is responsible for physical security, are PE controls still relevant to our SOC 2 scope?
+    question_type: gap_analysis
+    expected_criteria: [PE-1]
+    notes: Shared responsibility — agent should note common-controls framing without overclaiming.
