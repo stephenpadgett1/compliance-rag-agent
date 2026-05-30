@@ -124,7 +124,7 @@ This is a reference, not a product:
 - No web UI; CLI only
 - No reranking — vector + keyword hybrid is the retrieval ceiling here
 
-What I'd add for production is called out in `docs/architecture.md` (and the writeup at `docs/writeup-draft.md`).
+Further production-hardening steps are described in `docs/architecture.md` (and the writeup at `docs/writeup-draft.md`).
 
 ## Repo layout
 
